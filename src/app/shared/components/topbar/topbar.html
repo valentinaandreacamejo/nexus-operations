@@ -1,0 +1,52 @@
+<header class="topbar">
+  <label class="topbar__search glass-card">
+    <i class="bi bi-search"></i>
+    <input
+      type="search"
+      placeholder="Search projects, clients, employees…"
+      [value]="dashboard.searchQuery()"
+      (input)="onSearch($event)"
+    />
+    <kbd>⌘K</kbd>
+  </label>
+
+  <div class="topbar__actions">
+    <button class="topbar__icon glass-card" type="button" aria-label="Notifications">
+      <i class="bi bi-bell-fill"></i>
+      @if (notifications() > 0) {
+        <span class="topbar__badge">{{ notifications() }}</span>
+      }
+    </button>
+
+    <div class="topbar__profile-wrap">
+      <button
+        class="topbar__profile glass-card"
+        type="button"
+        [attr.aria-expanded]="menuOpen()"
+        aria-haspopup="menu"
+        (click)="toggleMenu()"
+      >
+        <img [src]="user.avatar" [alt]="user.name" width="36" height="36" />
+        <span class="topbar__who">
+          <strong>{{ user.name }}</strong>
+          <span class="text-muted">{{ user.role }}</span>
+        </span>
+        <i class="bi bi-chevron-down topbar__chevron" [class.is-open]="menuOpen()"></i>
+      </button>
+
+      @if (menuOpen()) {
+        <div class="topbar__menu glass-card" role="menu">
+          @for (item of menuItems; track item.label) {
+            <button type="button" role="menuitem" (click)="menuOpen.set(false)">
+              <i class="bi" [class]="item.icon"></i> {{ item.label }}
+            </button>
+          }
+          <hr />
+          <button type="button" role="menuitem" class="is-danger" (click)="menuOpen.set(false)">
+            <i class="bi bi-box-arrow-right"></i> Sign out
+          </button>
+        </div>
+      }
+    </div>
+  </div>
+</header>

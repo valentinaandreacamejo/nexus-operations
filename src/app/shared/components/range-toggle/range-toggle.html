@@ -1,0 +1,15 @@
+<div class="toggle glass-card" role="radiogroup" aria-label="Time range">
+  <span class="toggle__thumb" [style.transform]="'translateX(' + activeIndex() * 100 + '%)'"></span>
+  @for (opt of options; track opt.value) {
+    <button
+      type="button"
+      role="radio"
+      class="toggle__option"
+      [class.is-active]="dashboard.timeRange() === opt.value"
+      [attr.aria-checked]="dashboard.timeRange() === opt.value"
+      (click)="dashboard.setTimeRange(opt.value)"
+    >
+      {{ opt.label }}
+    </button>
+  }
+</div>

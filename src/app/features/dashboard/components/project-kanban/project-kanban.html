@@ -1,0 +1,51 @@
+<section class="projects glass-card">
+  <div class="card-header">
+    <div>
+      <h3>Industrial Projects</h3>
+      <p class="text-muted">Live status across all plants</p>
+    </div>
+    <button class="btn-ghost" type="button"><i class="bi bi-plus-lg"></i> New project</button>
+  </div>
+
+  <div class="projects__tabs" role="tablist">
+    @for (f of filters; track f) {
+      <button
+        type="button"
+        role="tab"
+        class="projects__tab"
+        [class.is-active]="activeFilter() === f"
+        [attr.aria-selected]="activeFilter() === f"
+        (click)="activeFilter.set(f)"
+      >
+        {{ f }} <span>{{ countFor(f) }}</span>
+      </button>
+    }
+  </div>
+
+  <ul class="projects__list">
+    @for (p of visibleProjects(); track p.id) {
+      <li class="projects__row">
+        <div class="projects__info">
+          <span class="projects__icon"><i class="bi bi-buildings"></i></span>
+          <div>
+            <strong>{{ p.name }}</strong>
+            <span class="text-muted">{{ p.client }} · {{ p.id }}</span>
+          </div>
+        </div>
+
+        <span class="badge" [class]="statusBadge[p.status]">{{ p.status }}</span>
+
+        <div class="projects__progress">
+          <div class="projects__bar">
+            <div [style.width.%]="p.progress" [class.is-done]="p.status === 'Completed'"></div>
+          </div>
+          <span>{{ p.progress }}%</span>
+        </div>
+      </li>
+    } @empty {
+      <li class="projects__empty text-muted">
+        <i class="bi bi-search"></i> No projects match the current filters.
+      </li>
+    }
+  </ul>
+</section>

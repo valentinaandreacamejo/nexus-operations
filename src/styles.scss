@@ -1,0 +1,122 @@
+@use 'styles/variables' as *;
+
+// ==========================================================================
+// Reset & base
+// ==========================================================================
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  font-family: $font-family;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text);
+  background: var(--bg-app);
+  // Soft ambient blobs so the glass blur has something to refract
+  background-image:
+    radial-gradient(at 12% 8%, rgba(124, 58, 237, 0.08) 0, transparent 45%),
+    radial-gradient(at 88% 0%, rgba(209, 243, 102, 0.18) 0, transparent 40%),
+    radial-gradient(at 70% 95%, rgba(16, 185, 129, 0.08) 0, transparent 45%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+input {
+  font: inherit;
+}
+
+// ==========================================================================
+// Utilities
+// ==========================================================================
+.glass-card {
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  box-shadow: var(--glass-shadow);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-3;
+  margin-bottom: $space-4;
+
+  h3 {
+    font-size: 16px;
+  }
+}
+
+.text-muted {
+  color: var(--color-muted);
+}
+
+.text-positive {
+  color: var(--color-emerald);
+}
+
+.text-negative {
+  color: var(--color-danger);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-1;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 20px;
+
+  &--emerald { background: rgba(16, 185, 129, 0.12); color: var(--color-emerald); }
+  &--violet  { background: rgba(124, 58, 237, 0.12); color: var(--color-violet); }
+  &--lime    { background: var(--color-lime); color: var(--color-sidebar); }
+  &--warning { background: rgba(245, 158, 11, 0.14); color: #B45309; }
+  &--danger  { background: rgba(239, 68, 68, 0.12); color: var(--color-danger); }
+  &--muted   { background: var(--color-line); color: var(--color-muted); }
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  padding: $space-2 $space-3;
+  border: 1px solid var(--color-line);
+  border-radius: $radius-sm;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background var(--transition-base);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.9);
+  }
+}

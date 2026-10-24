@@ -1,0 +1,44 @@
+@use 'variables' as *;
+
+.overview {
+  display: flex;
+  flex-direction: column;
+  gap: $space-5;
+
+  &__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: $space-4;
+
+    h1 {
+      font-size: 28px;
+      margin: $space-1 0;
+    }
+  }
+
+  &__eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-violet);
+  }
+
+  &__kpis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: $space-5;
+  }
+
+  &__main {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: $space-5;
+
+    @media (max-width: $bp-lg) {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+}

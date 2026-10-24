@@ -1,0 +1,19 @@
+@use 'variables' as *;
+
+.shell {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  min-height: 100vh;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: $space-5;
+    min-width: 0;
+    padding: $space-4 $space-6 $space-6;
+
+    @media (max-width: $bp-md) {
+      padding: $space-4;
+    }
+  }
+}

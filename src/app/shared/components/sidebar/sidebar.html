@@ -1,0 +1,38 @@
+<aside class="sidebar">
+  <a class="sidebar__brand" routerLink="/overview" aria-label="NEXUS_OPS home">
+    <span class="sidebar__logo"><i class="bi bi-cpu-fill"></i></span>
+    <span class="sidebar__label sidebar__title">NEXUS<em>_OPS</em></span>
+  </a>
+
+  <nav class="sidebar__nav" aria-label="Main navigation">
+    <span class="sidebar__label sidebar__section">Menu</span>
+    @for (item of navItems; track item.route) {
+      <a
+        class="sidebar__link"
+        [routerLink]="item.route"
+        routerLinkActive="is-active"
+        [title]="item.label"
+      >
+        <i class="bi" [class]="item.icon"></i>
+        <span class="sidebar__label">{{ item.label }}</span>
+      </a>
+    }
+  </nav>
+
+  <!-- <div class="sidebar__widget">
+    <div class="sidebar__widget-head">
+      <span class="sidebar__pulse"></span>
+      <span class="sidebar__label">All systems operational</span>
+    </div>
+    <div class="sidebar__label sidebar__widget-body">
+      <div class="sidebar__widget-row">
+        <span>Plant load</span>
+        <strong>{{ systemLoad() }}%</strong>
+      </div>
+      <div class="sidebar__meter"><div [style.width.%]="systemLoad()"></div></div>
+      <button class="sidebar__upgrade" type="button">
+        <i class="bi bi-lightning-charge-fill"></i> Upgrade to Pro
+      </button>
+    </div>
+  </div> -->
+</aside>

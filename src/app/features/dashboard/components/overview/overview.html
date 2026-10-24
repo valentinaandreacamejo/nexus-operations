@@ -1,0 +1,23 @@
+<section class="overview">
+  <header class="overview__head">
+    <div>
+      <span class="overview__eyebrow">Industrial ERP · Control Center</span>
+      <h1>Operations Overview</h1>
+      <p class="text-muted">Welcome back, Alex. Here's what's happening across your plants.</p>
+    </div>
+    <app-range-toggle />
+  </header>
+
+  <div class="overview__kpis">
+    @for (kpi of dashboard.kpis(); track kpi.id) {
+      <app-kpi-card [kpi]="kpi" [period]="periodCaption()" />
+    }
+  </div>
+
+  <div class="overview__main">
+    <app-project-kanban />
+    <app-performance-chart />
+  </div>
+
+  <app-employee-table />
+</section>

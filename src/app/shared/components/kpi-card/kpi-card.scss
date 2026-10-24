@@ -1,0 +1,82 @@
+@use 'variables' as *;
+
+:host {
+  --kpi-accent-bg: var(--color-lime);
+  --kpi-accent-fg: var(--color-sidebar);
+  --kpi-glow: rgba(209, 243, 102, 0.55);
+  display: block;
+}
+
+:host(.accent-emerald) { --kpi-accent-bg: rgba(16, 185, 129, 0.14); --kpi-accent-fg: var(--color-emerald); --kpi-glow: rgba(16, 185, 129, 0.45); }
+:host(.accent-violet)  { --kpi-accent-bg: rgba(124, 58, 237, 0.12); --kpi-accent-fg: var(--color-violet); --kpi-glow: rgba(124, 58, 237, 0.4); }
+:host(.accent-dark)    { --kpi-accent-bg: var(--color-sidebar); --kpi-accent-fg: var(--color-lime); --kpi-glow: rgba(22, 25, 31, 0.35); }
+
+.kpi {
+  position: relative;
+  height: 100%;
+  padding: $space-5;
+  overflow: hidden;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+
+  // Luminous edge: gradient border revealed via mask
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, var(--kpi-glow), transparent 55%);
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0.6;
+    transition: opacity var(--transition-base);
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 40px rgba(31, 38, 135, 0.1);
+
+    &::before { opacity: 1; }
+  }
+
+  &__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: $space-5;
+  }
+
+  &__icon {
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    border-radius: $radius-md;
+    background: var(--kpi-accent-bg);
+    color: var(--kpi-accent-fg);
+    font-size: 20px;
+  }
+
+  &__label {
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  &__value {
+    margin: $space-1 0;
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums;
+
+    small {
+      font-size: 18px;
+      font-weight: 700;
+    }
+  }
+
+  &__period {
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,37 @@
+@use 'variables' as *;
+
+.toggle {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 4px;
+  border-radius: $radius-md;
+
+  &__thumb {
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: 4px;
+    width: calc((100% - 8px) / 3);
+    border-radius: $radius-sm;
+    background: var(--color-sidebar);
+    box-shadow: 0 4px 14px rgba(22, 25, 31, 0.25);
+    transition: transform 260ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &__option {
+    position: relative;
+    z-index: 1;
+    min-width: 84px;
+    padding: $space-2 $space-4;
+    border: 0;
+    background: transparent;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-muted);
+    transition: color var(--transition-base);
+
+    &:hover { color: var(--color-text); }
+    &.is-active { color: var(--color-lime); }
+  }
+}

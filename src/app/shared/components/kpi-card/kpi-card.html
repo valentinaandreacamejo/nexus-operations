@@ -1,0 +1,19 @@
+<article class="kpi glass-card">
+  <div class="kpi__head">
+    <span class="kpi__icon"><i class="bi" [class]="kpi().icon"></i></span>
+    <span class="badge" [class.badge--emerald]="isPositive()" [class.badge--danger]="!isPositive()">
+      <i class="bi" [class.bi-arrow-up-right]="isPositive()" [class.bi-arrow-down-right]="!isPositive()"></i>
+      {{ isPositive() ? '+' : '' }}{{ kpi().trend | number: '1.1-1' }}%
+    </span>
+  </div>
+
+  <p class="kpi__label text-muted">{{ kpi().label }}</p>
+  <p class="kpi__value">
+    @switch (kpi().format) {
+      @case ('currency') { {{ kpi().value | currency: 'USD' : 'symbol' : '1.0-0' }} }
+      @case ('percent') { {{ kpi().value | number: '1.1-1' }}<small>%</small> }
+      @default { {{ kpi().value | number }} }
+    }
+  </p>
+  <p class="kpi__period text-muted">{{ period() }}</p>
+</article>

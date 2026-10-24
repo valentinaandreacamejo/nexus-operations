@@ -1,0 +1,87 @@
+<section class="team glass-card">
+  <div class="card-header">
+    <div>
+      <h3>Workforce & Resources</h3>
+      <p class="text-muted">{{ totalHours() | number }} hours logged in the selected period</p>
+    </div>
+
+    <div class="team__filters">
+      @for (d of departmentFilters; track d) {
+        <button
+          type="button"
+          class="team__chip"
+          [class.is-active]="department() === d"
+          (click)="department.set(d)"
+        >
+          {{ d }}
+        </button>
+      }
+    </div>
+  </div>
+
+  <div class="team__scroll">
+    <table class="team__table">
+      <thead>
+        <tr>
+          <th>
+            <button type="button" class="team__sort" (click)="sortBy('name')">
+              Employee
+              @if (sortKey() === 'name') {
+                <i class="bi" [class]="sortDesc() ? 'bi-sort-alpha-up-alt' : 'bi-sort-alpha-down'"></i>
+              }
+            </button>
+          </th>
+          <th>Department</th>
+          <th>Status</th>
+          <th>
+            <button type="button" class="team__sort" (click)="sortBy('hoursLogged')">
+              Hours logged
+              @if (sortKey() === 'hoursLogged') {
+                <i class="bi" [class]="sortDesc() ? 'bi-sort-numeric-down-alt' : 'bi-sort-numeric-down'"></i>
+              }
+            </button>
+          </th>
+          <th aria-label="Actions"></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (emp of rows(); track emp.id) {
+          <tr>
+            <td>
+              <div class="team__person">
+                <img [src]="emp.avatar" [alt]="emp.name" width="38" height="38" loading="lazy" />
+                <div>
+                  <strong>{{ emp.name }}</strong>
+                  <span class="text-muted">{{ emp.role }}</span>
+                </div>
+              </div>
+            </td>
+            <td>
+              <span class="team__dept"><i class="bi" [class]="departmentIcon[emp.department]"></i> {{ emp.department }}</span>
+            </td>
+            <td>
+              <span class="badge" [class]="statusBadge[emp.status]">
+                <i class="bi bi-circle-fill team__dot"></i> {{ emp.status }}
+              </span>
+            </td>
+            <td>
+              <div class="team__hours">
+                <div class="team__bar"><div [style.width.%]="(emp.hoursLogged / maxHours()) * 100"></div></div>
+                <strong>{{ emp.hoursLogged | number }} h</strong>
+              </div>
+            </td>
+            <td class="team__actions">
+              <button type="button" class="team__action" [attr.aria-label]="'Open ' + emp.name">
+                <i class="bi bi-three-dots"></i>
+              </button>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="5" class="team__empty text-muted">No employees match the current filters.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</section>

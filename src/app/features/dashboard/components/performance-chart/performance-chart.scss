@@ -1,0 +1,138 @@
+@use 'variables' as *;
+
+:host {
+  display: block;
+}
+
+.chart {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: $space-5;
+
+  &__focus {
+    display: flex;
+    gap: $space-6;
+    margin-bottom: $space-5;
+
+    span,
+    strong {
+      display: block;
+    }
+
+    span {
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    strong {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    small {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--color-muted);
+    }
+  }
+
+  &__plot {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    gap: $space-2;
+    flex: 1;
+    min-height: 220px;
+    padding-bottom: 24px; // room for labels
+  }
+
+  &__target {
+    position: absolute;
+    left: 0;
+    right: 0;
+    border-top: 1px dashed rgba(124, 58, 237, 0.4);
+    pointer-events: none;
+
+    em {
+      position: absolute;
+      right: 0;
+      top: -18px;
+      font-size: 10px;
+      font-style: normal;
+      font-weight: 700;
+      color: var(--color-violet);
+    }
+  }
+
+  &__col {
+    position: relative;
+    display: flex;
+    flex: 1;
+    align-items: flex-end;
+    justify-content: center;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    outline: none;
+  }
+
+  &__bar {
+    position: relative;
+    width: 100%;
+    max-width: 36px;
+    min-height: 6px;
+    border-radius: 10px 10px 6px 6px;
+    background: linear-gradient(180deg, rgba(22, 25, 31, 0.16), rgba(22, 25, 31, 0.06));
+    transition: height 500ms cubic-bezier(0.4, 0, 0.2, 1), background var(--transition-base),
+      box-shadow var(--transition-base);
+  }
+
+  &__tip {
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 6px);
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: var(--color-sidebar);
+    color: var(--color-lime);
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translate(-50%, 4px);
+    transition: opacity var(--transition-base), transform var(--transition-base);
+  }
+
+  &__label {
+    position: absolute;
+    bottom: -24px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--color-muted);
+  }
+
+  &__col:hover &__bar,
+  &__col.is-active &__bar {
+    background: linear-gradient(180deg, var(--color-sidebar), #2A2F3A);
+    box-shadow: 0 10px 24px rgba(22, 25, 31, 0.25);
+  }
+
+  &__col.is-active &__bar {
+    background: linear-gradient(180deg, var(--color-lime), #B5DB3F);
+    box-shadow: 0 10px 24px rgba(209, 243, 102, 0.45);
+  }
+
+  &__col.is-active &__tip,
+  &__col:focus-visible &__tip {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  &__col.is-active &__label {
+    color: var(--color-text);
+  }
+}

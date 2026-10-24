@@ -1,0 +1,41 @@
+<section class="chart glass-card">
+  <div class="card-header">
+    <div>
+      <h3>Production Efficiency</h3>
+      <p class="text-muted">Average {{ dashboard.avgEfficiency() | number: '1.1-1' }}% · target 90%</p>
+    </div>
+    <span class="badge badge--lime"><i class="bi bi-activity"></i> Live</span>
+  </div>
+
+  <div class="chart__focus">
+    <div>
+      <span class="text-muted">{{ focus().label }}</span>
+      <strong>{{ focus().efficiency }}%</strong>
+    </div>
+    <div>
+      <span class="text-muted">Output</span>
+      <strong>{{ focus().output | number }} <small>units</small></strong>
+    </div>
+  </div>
+
+  <div class="chart__plot" (mouseleave)="selectedIndex.set(null)">
+    <span class="chart__target" [style.bottom]="targetLineBottom"><em>90%</em></span>
+
+    @for (b of bars(); track b.label; let i = $index) {
+      <button
+        type="button"
+        class="chart__col"
+        [class.is-active]="focus().label === b.label"
+        [attr.aria-label]="b.label + ': ' + b.efficiency + '% efficiency'"
+        (mouseenter)="selectedIndex.set(i)"
+        (focus)="selectedIndex.set(i)"
+        (click)="selectedIndex.set(i)"
+      >
+        <span class="chart__bar" [style.height.%]="b.height">
+          <span class="chart__tip">{{ b.efficiency }}%</span>
+        </span>
+        <span class="chart__label">{{ b.label }}</span>
+      </button>
+    }
+  </div>
+</section>
