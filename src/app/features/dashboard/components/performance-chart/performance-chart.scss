@@ -135,4 +135,30 @@
   &__col.is-active &__label {
     color: var(--color-text);
   }
+
+  @media (max-width: $bp-md) {
+    padding: $space-4;
+
+    &__focus {
+      gap: $space-5;
+      margin-bottom: $space-4;
+
+      strong {
+        font-size: 20px;
+      }
+    }
+
+    &__plot {
+      gap: 4px;
+      min-height: 180px;
+    }
+
+    &__label {
+      font-size: 10px;
+    }
+
+    &__bar {
+      border-radius: 8px 8px 4px 4px;
+    }
+  }
 }

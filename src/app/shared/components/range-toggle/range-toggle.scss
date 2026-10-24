@@ -1,5 +1,9 @@
 @use 'variables' as *;
 
+:host {
+  display: block;
+}
+
 .toggle {
   position: relative;
   display: grid;
@@ -33,5 +37,10 @@
 
     &:hover { color: var(--color-text); }
     &.is-active { color: var(--color-lime); }
+
+    @media (max-width: $bp-md) {
+      min-width: 0;
+      padding: 10px $space-2;
+    }
   }
 }

@@ -68,9 +68,11 @@
       border-top: 1px solid var(--color-line);
     }
 
-    &:hover {
-      background: rgba(255, 255, 255, 0.9);
-      transform: translateX(2px);
+    @media (hover: hover) {
+      &:hover {
+        background: rgba(255, 255, 255, 0.9);
+        transform: translateX(2px);
+      }
     }
 
     .badge {
@@ -79,9 +81,16 @@
 
     @media (max-width: $bp-md) {
       grid-template-columns: minmax(0, 1fr) auto;
+      gap: $space-2 $space-3;
+      padding: $space-3 0;
+
+      .badge {
+        justify-self: end;
+      }
 
       .projects__progress {
         grid-column: 1 / -1;
+        padding-left: 50px; // aligns with the text, past the icon
       }
     }
   }
@@ -147,5 +156,9 @@
   &__empty {
     padding: $space-6;
     text-align: center;
+  }
+
+  @media (max-width: $bp-md) {
+    padding: $space-4;
   }
 }

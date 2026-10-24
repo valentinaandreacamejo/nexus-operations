@@ -62,12 +62,14 @@
       transition: background var(--transition-base);
     }
 
-    tbody tr:hover td {
-      background: rgba(255, 255, 255, 0.85);
-    }
+    @media (hover: hover) {
+      tbody tr:hover td {
+        background: rgba(255, 255, 255, 0.85);
+      }
 
-    tbody tr:hover td:first-child { border-radius: $radius-md 0 0 $radius-md; }
-    tbody tr:hover td:last-child  { border-radius: 0 $radius-md $radius-md 0; }
+      tbody tr:hover td:first-child { border-radius: $radius-md 0 0 $radius-md; }
+      tbody tr:hover td:last-child  { border-radius: 0 $radius-md $radius-md 0; }
+    }
   }
 
   &__sort {
@@ -169,5 +171,87 @@
   &__empty {
     padding: $space-6 !important;
     text-align: center;
+  }
+
+  // Phones: each row becomes a compact card
+  //   [person ........ actions]
+  //   [department ..... status]
+  //   [hours bar ..............]
+  @media (max-width: $bp-md) {
+    padding: $space-4;
+
+    &__filters {
+      flex: 0 0 calc(100% + #{$space-4 * 2});
+    }
+
+    &__scroll {
+      overflow: visible;
+    }
+
+    &__table {
+      &,
+      tbody,
+      tr,
+      td {
+        display: block;
+      }
+
+      thead {
+        display: none;
+      }
+
+      tbody tr {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-areas:
+          'person actions'
+          'dept   status'
+          'hours  hours';
+        align-items: center;
+        gap: $space-2 $space-3;
+        padding: $space-3 0;
+        border-top: 1px solid var(--color-line);
+      }
+
+      tbody tr:first-child {
+        border-top: 0;
+        padding-top: 0;
+      }
+
+      td {
+        padding: 0;
+        border: 0;
+        white-space: normal;
+      }
+    }
+
+    &__cell-person  { grid-area: person; min-width: 0; }
+    &__cell-actions { grid-area: actions; width: auto; justify-self: end; }
+    &__cell-dept    { grid-area: dept; font-size: 12px; }
+    &__cell-status  { grid-area: status; justify-self: end; }
+    &__cell-hours   { grid-area: hours; }
+
+    &__person {
+      min-width: 0;
+
+      div {
+        min-width: 0;
+      }
+
+      strong,
+      span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+
+    &__hours {
+      min-width: 0;
+    }
+
+    &__empty {
+      grid-column: 1 / -1;
+    }
   }
 }

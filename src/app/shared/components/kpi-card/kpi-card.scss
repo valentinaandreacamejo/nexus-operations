@@ -79,4 +79,48 @@
   &__period {
     font-size: 12px;
   }
+
+  @media (hover: none) {
+    &:hover {
+      transform: none;
+    }
+  }
+
+  // Compact layout for the 2-up phone grid
+  @media (max-width: $bp-sm) {
+    padding: $space-4 14px;
+    border-radius: 16px;
+
+    &__head {
+      margin-bottom: $space-3;
+    }
+
+    &__icon {
+      width: 36px;
+      height: 36px;
+      border-radius: $radius-sm;
+      font-size: 16px;
+    }
+
+    .badge {
+      padding: 0 6px;
+      font-size: 11px;
+    }
+
+    &__label {
+      font-size: 12px;
+    }
+
+    &__value {
+      font-size: 20px;
+
+      small {
+        font-size: 14px;
+      }
+    }
+
+    &__period {
+      font-size: 11px;
+    }
+  }
 }

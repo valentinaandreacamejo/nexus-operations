@@ -1,8 +1,10 @@
 import { ChangeDetectionStrategy, Component, ElementRef, inject, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { DashboardService } from '../../../core/services/dashboard.service';
 
 @Component({
   selector: 'app-topbar',
+  imports: [RouterLink],
   templateUrl: './topbar.html',
   styleUrl: './topbar.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

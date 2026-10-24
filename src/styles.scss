@@ -15,6 +15,11 @@ body {
   height: 100%;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 body {
   font-family: $font-family;
   font-size: 14px;
@@ -44,6 +49,11 @@ button {
   font: inherit;
   color: inherit;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  -webkit-tap-highlight-color: transparent;
 }
 
 input {
@@ -71,6 +81,37 @@ input {
 
   h3 {
     font-size: 16px;
+  }
+
+  @media (max-width: $bp-sm) {
+    flex-wrap: wrap;
+    margin-bottom: $space-3;
+  }
+}
+
+// Horizontal chip/tab rows that scroll instead of wrapping on small screens
+.scroll-row {
+  @media (max-width: $bp-md) {
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    margin-inline: -$space-4;
+    padding-inline: $space-4;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    > * {
+      flex-shrink: 0;
+    }
+  }
+}
+
+.hide-sm {
+  @media (max-width: $bp-sm) {
+    display: none !important;
   }
 }
 

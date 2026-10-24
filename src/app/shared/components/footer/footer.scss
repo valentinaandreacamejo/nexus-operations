@@ -1,0 +1,51 @@
+@use 'variables' as *;
+
+:host {
+  display: block;
+  margin-top: auto; // sticks to the bottom on short pages
+}
+
+.footer {
+  padding: $space-5 0 $space-2;
+  border-top: 1px solid var(--color-line);
+  text-align: center;
+
+  &__credit {
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+    color: var(--color-muted);
+    opacity: 0.85;
+  }
+
+  &__link {
+    color: var(--color-text);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: color var(--transition-base), text-decoration-color var(--transition-base);
+
+    &:hover,
+    &:focus-visible {
+      color: var(--color-violet);
+      text-decoration-color: currentColor;
+    }
+
+    &:focus-visible {
+      outline: 2px solid rgba(124, 58, 237, 0.35);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+  }
+
+  &__arrow {
+    display: inline-block;
+    transition: transform var(--transition-base);
+  }
+
+  &__link:hover &__arrow,
+  &__link:focus-visible &__arrow {
+    transform: translate(2px, -2px);
+  }
+}

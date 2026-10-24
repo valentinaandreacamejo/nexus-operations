@@ -4,10 +4,12 @@
       <h3>Industrial Projects</h3>
       <p class="text-muted">Live status across all plants</p>
     </div>
-    <button class="btn-ghost" type="button"><i class="bi bi-plus-lg"></i> New project</button>
+    <button class="btn-ghost" type="button" aria-label="New project">
+      <i class="bi bi-plus-lg"></i> <span class="hide-sm">New project</span>
+    </button>
   </div>
 
-  <div class="projects__tabs" role="tablist">
+  <div class="projects__tabs scroll-row" role="tablist">
     @for (f of filters; track f) {
       <button
         type="button"
