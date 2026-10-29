@@ -8,8 +8,13 @@
 .footer {
   padding: $space-5 0 $space-2;
   border-top: 1px solid var(--color-line);
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
   text-align: center;
+  font-family: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
 
+  &__copyright,
   &__credit {
     font-size: 0.75rem;
     letter-spacing: 0.02em;
@@ -17,9 +22,13 @@
     opacity: 0.85;
   }
 
+  &__copyright {
+    opacity: 0.7;
+  }
+
   &__link {
     color: var(--color-text);
-    font-weight: 600;
+    font-weight: 500;
     text-decoration: underline;
     text-decoration-color: transparent;
     text-decoration-thickness: 1px;
